@@ -34,8 +34,9 @@ The configuration can be done in the settings.json and the description is as fol
   "proxy_links":0,   // 0 for disabling proxy when fetching page links upon reaching the limit.
   "proxy_images":0,  // 0 for disabling proxy when fetching  page images upon reaching the limit.
   "max_retry_links":1, // Max retries for fetching a link using proxies.
-  "max_retry_images":1 // Max retries for a fetching a image using proxies.
-  "global_retry_time": // 0 for not running GoBooDo indefinitely, the number of seconds of delay between each global retry otherwise.
+  "max_retry_images":1, // Max retries for a fetching a image using proxies.
+  "global_retry_time":30, // 0 for not running GoBooDo indefinitely, the number of seconds of delay between each global retry otherwise.
+  "proxy_list_path": "" // The URL for an online list of proxies in IP:port format.
 }
 ~~~
 

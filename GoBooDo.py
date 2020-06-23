@@ -29,6 +29,7 @@ class  GoBooDo:
     def __init__(self,id,):
         self.id = id
         self.country = settings['country']
+        self.proxy_list_path = settings['proxy_list_path']
         self.resethead()
         self.pageLinkDict = {}
         self.pageList = []
@@ -42,8 +43,19 @@ class  GoBooDo:
         else:
             os.mkdir(self.path)
             os.mkdir(self.dataPath)
-        with open('proxies.txt','r') as ofile:
-            self.plist = ofile.readlines()
+        if self.proxy_list_path:
+            try:
+                req = requests.get(self.proxy_list_path, verify=False)
+                req.raise_for_status()
+                self.plist = req.text.splitlines()
+            except Exception as e:
+                if req.status_code == 404:
+                    print("The proxy list could not be found. \n")
+                else:
+                    print(e)
+        else:
+            with open('proxies.txt','r') as ofile:
+                self.plist = ofile.readlines()
 
     def resethead(self):
         try:
